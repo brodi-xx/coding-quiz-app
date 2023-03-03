@@ -1,0 +1,101 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    font-family: 'Courier New';
+}
+:root {
+    --neutral-color: white;
+    --correct-color: green;
+    --wrong-color: red;
+    --default-color:aquamarine;
+
+
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: var(--default-color);
+}
+
+body.corect {
+    color: var(--correct-color);
+}
+
+body.wrong {
+    color: var(--wrong-color)
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: rgba(25, 24, 24, 0);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px; /* May not use, depends on if I keep a black bg */
+}
+
+.button-grid {
+    display: grid;
+    margin: 20px 0;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px
+
+}
+
+.button {
+color: var(--neutral-color);
+border: 1px solid var(--default-color);
+background-color: black;
+border-radius: 3px;
+padding: 5px 10px;
+transition: all 0.2s ease-in-out
+}
+
+.button:hover {
+    color: black;
+    border: white solid 1px;
+    background:var(--default-color);
+    font-weight: 800;
+}
+
+.button-correct{
+    background-color: var(--correct-color);
+    color: var(--neutral-color);
+    font-weight: bolder;
+    
+}
+
+.button-wrong{
+    background-color: var(--wrong-color);
+    color:var(--neutral-color);
+    font-weight: bolder;
+}
+
+.start-button, .next-button {
+    font-size: large;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 10px 20px;
+    transition: all 0.2s ease-in-out
+}
+
+.start-button:hover, .next-button:hover{
+    color: black;
+    border: white solid 2px;
+    background:var(--default-color);
+    font-weight: bolder;
+}
+.controls {
+    display: flex;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
