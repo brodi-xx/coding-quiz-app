@@ -37,7 +37,7 @@ body.wrong {
     background-color: rgba(25, 24, 24, 0);
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 0 0 10px 2px; /* May not use, depends on if I keep a black bg */
+    box-shadow: 0 0 10px 2px;
 }
 
 .button-grid {
