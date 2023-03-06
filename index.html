@@ -9,21 +9,29 @@
     <title>Coding Quiz</title>
 </head>
 <body>
-    <div class= "container">
-        <div id = "question-container" class = "hide">
-            <div id = "question">Question</div>
-            <div id = "answers-btn" class = "button-grid">
-                <button class = "button">Answer 1</button>
-                <button class = "button">Answer 2</button>
-                <button class = "button">Answer 3</button>
-                <button class = "button">Answer 4</button>
-            </div>
+    <header id="header">
+        <p>Developer Quiz</p>
+        <p id="countdown"></p>
+    </header>
+    <div class="container">
+        <div class = "hide" id = "showName">
+            <label for = "first-name">First Name</label>
+            <input type="text" name="first-name" id="first-name" placeholder="Jane" />
+          </div>  
+        <div id="question-container" class="hide">
+          <div id="question">Question</div>
+          <div id="answer-buttons" class="button-grid">
+            <button class="button">Answer 1</button>
+            <button class="button">Answer 2</button>
+            <button class="button">Answer 3</button>
+            <button class="button">Answer 4</button>
+          </div>
         </div>
-        <div class = "controls">
-         <button id = "start-btn" class = "start-button">Start</button> 
-         <button id = "next-btn" class = "next-button hide">Next</button>  
+        <div class="controls">
+          <button id="start-btn" class="start-button button">Start</button>
+          <button id="next-btn" class="next-button button hide">Next</button>
         </div>
-    </div>
+      </div>
 
     <script src="../coding-quiz-app/script.js"></script>
 </body>
