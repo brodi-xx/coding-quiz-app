@@ -37,7 +37,7 @@ function leaderboard() {
 //The countdown timer
 
 function countdown() {
-    var timeLeft = 25;
+    var timeLeft = 15;
     
     var timeInterval = setInterval(function () {
         if (timeLeft > 1) {
@@ -67,7 +67,8 @@ function countdown() {
 }
 
 
-//
+// quiz functions
+
 function startQuiz() {
     countdown();
     startButton.classList.add('hide')

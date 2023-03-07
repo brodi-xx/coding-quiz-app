@@ -1,3 +1,5 @@
+/* Global properties */
+
 *, *::before, *::after{
     font-family: 'Courier New';
 }
@@ -32,6 +34,7 @@ body.wrong {
 .button.correct {
     border-color: var(--correct-color);
 }
+/* header bar with title, leaderboard, and timer */ 
 
 #header{
     display: flex;
@@ -39,9 +42,20 @@ body.wrong {
     font-size: medium;
     font-weight: bolder;
     margin-bottom: 25%;  
+    padding: 1.5%;
+    box-shadow: 0 0 10px 1px;
 }
 
+#header h1{
+    color: var(--neutral-color);
+    
+}
 
+#header a{
+    position: relative;
+}
+
+/* Question container */
 
 .container {
     display: flex;
@@ -58,6 +72,8 @@ body.wrong {
     padding: 10px;
     box-shadow: 0 0 10px 2px;
 }
+
+/* button CSS */
 
 .button-grid {
     display: grid;
@@ -123,6 +139,8 @@ transition: all 0.2s ease-in-out
     display:block
 }
 
+/* breakpoint for different screens */
+
 @media (max-width: 1399px){
     .container {
         margin-left: -5rem;
@@ -156,3 +174,27 @@ transition: all 0.2s ease-in-out
     }
 }
 
+/* iPhone 12 pro screen */
+@media (max-width: 390px) {
+    #header{
+        font-size: -4rem;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    
+        padding: 6%;
+    }
+    #header h1{
+    margin-bottom: 1rem;
+    
+}
+
+#header p{
+    margin-top: 1rem;
+}    
+    .container{
+        left: 34%;
+        justify-content: center;
+    }
+    
+}
