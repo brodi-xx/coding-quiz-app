@@ -5,5 +5,5 @@ I utlized my Teacher's Assistances, a tutor, and a youtube tutorial to help me c
 
 The live project can be found <a href="https://brodi-xx.github.io/coding-quiz-app/">here</a>
 <br>
-<img src="#">
+<img src="https://github.com/brodi-xx/coding-quiz-app/blob/main/Screen%20Shot%202023-03-06%20at%2010.34.41%20PM.png?raw=true">
 
