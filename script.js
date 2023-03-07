@@ -37,7 +37,7 @@ function leaderboard() {
 //The countdown timer
 
 function countdown() {
-    var timeLeft = 5;
+    var timeLeft = 25;
     
     var timeInterval = setInterval(function () {
         if (timeLeft > 1) {
