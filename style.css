@@ -5,7 +5,9 @@
 }
 :root {
     --neutral-color: white;
+    /** I would suggest using green as a correct color. Yellow made me think it was wrong. */
     --correct-color: #ffb949;
+    /** I would use a naming convention other than 'wrong-color', maybe error or danger */
     --wrong-color: #FF5349;
     --default-color:aquamarine;
     font-family: 'Courier New';
@@ -13,11 +15,13 @@
 
 body {
     padding: 0;
-    margin: 0;
-    justify-content: center;
+    /** This will center */
+    margin: 0 auto;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    width: 100vw;
+    /** don't need this width, otherwise you get a scrollbar */
+    /* width: 100vw; */
     height: 100vh;
     background-color: black;
     color: var(--default-color);
@@ -27,6 +31,7 @@ body.correct {
     color: var(--correct-color);
 }
 
+/** same here, change wrong */
 body.wrong {
     color: var(--wrong-color);
 }
@@ -36,21 +41,23 @@ body.wrong {
 }
 /* header bar with title, leaderboard, and timer */ 
 
-#header{
+#header {
     display: flex;
-    justify-content: space-between;
+    /** Space evenly will work better here if you're trying to center within the two columns */
+    justify-content: space-evenly;
+    /** Explicitly call a font size in px or rem would be even better, then you wouldn't have to update it as much for smaller screen sizes */
     font-size: medium;
     font-weight: bolder;
-    margin-bottom: 25%;  
+    margin-bottom: 25%;
     padding: 1.5%;
     box-shadow: 0 0 10px 1px;
 }
 
 #header h1{
     color: var(--neutral-color);
-    
 }
 
+/** Don't need this */
 #header a{
     position: relative;
 }
@@ -61,12 +68,14 @@ body.wrong {
     display: flex;
     box-sizing: border-box;
     align-items: center;
-    justify-content: space-evenly;
-    position: relative;
+    justify-content: center;
+    /* position: relative; */
     flex-direction: column;
-    left: 25%;
-    width: 800px;
-    max-width: 80%;
+    /** You can remove all of these and just add a resizable horizontal margin on the left and right, then you wont need any of the media breakpoints either that are below */
+    /* left: 25%; */
+    /* width: 800px; */
+    /* max-width: 80%; */
+    margin: auto 20%;
     background-color: black;
     border-radius: 5px;
     padding: 10px;
@@ -139,9 +148,12 @@ transition: all 0.2s ease-in-out
     display:block
 }
 
+
+/** Don't need any of this */
+
 /* breakpoint for different screens */
 
-@media (max-width: 1399px){
+/* @media (max-width: 1399px){
     .container {
         margin-left: -5rem;
         margin-top: 20rem;
@@ -172,12 +184,15 @@ transition: all 0.2s ease-in-out
     .container {
         margin-left: -6rem;
     }
-}
+} */
 
+/** You really don't need any this selector for iphone 12, it will inherit from larger screen size, this can get messy if you start to target specific phones */
 /* iPhone 12 pro screen */
 @media (max-width: 390px) {
     #header{
+        /** Reframe from using negative font-sizes */
         font-size: -4rem;
+        /** don't need to redeclare, it will inherit */
         flex-direction: column;
         justify-content: space-between;
         align-items: center;

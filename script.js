@@ -1,185 +1,183 @@
-const startButton = document.getElementById('start-btn');
-const nextButton = document.getElementById('next-btn');
-const questionContainerElement = document.getElementById('question-container');
-const questionElement = document.getElementById('question');
-const answerButtonsElement = document.getElementById('answer-buttons');
-const submitButton = document.getElementById('submit-btn');
-const restartButton = document.getElementById('restart-btn');
-const timerEl = document.getElementById('countdown');
-var score = 0
+const startButton = document.getElementById("start-btn");
+const nextButton = document.getElementById("next-btn");
+const questionContainerElement = document.getElementById("question-container");
+const questionElement = document.getElementById("question");
+const answerButtonsElement = document.getElementById("answer-buttons");
+const submitButton = document.getElementById("submit-btn");
+const restartButton = document.getElementById("restart-btn");
+const timerEl = document.getElementById("countdown");
+var score = 0;
 var firstNameInput = document.querySelector("#first-name");
 var showName = document.querySelector("#showName");
-console.log(showName)
+// Accidentally left this console log in here
+console.log(showName);
 
-let shuffledQuestions, currentQuestionIndex
+let shuffledQuestions, currentQuestionIndex;
 
 // Quiz button
 
-startButton.addEventListener('click', startQuiz)
-nextButton.addEventListener('click', () => {
-  currentQuestionIndex++
-  setNextQuestion()
-})
-
+startButton.addEventListener("click", startQuiz);
+nextButton.addEventListener("click", () => {
+  currentQuestionIndex++;
+  setNextQuestion();
+});
 
 // Leaderboard for scores
 
 function leaderboard() {
-    var user = {
-        firstName: firstNameInput.value.trim(),
-        scoreNumber: score
-    };
-    localStorage.setItem('user', JSON.stringify(user));
-    console.log(leaderboard)
-};
+  var user = {
+    firstName: firstNameInput.value.trim(),
+    scoreNumber: score,
+  };
+  localStorage.setItem("user", JSON.stringify(user));
+  console.log(leaderboard);
+}
 
+// The timer doesn't reset when the question is answered and it moves to the next question. So it just counts from 15 and then runs out of time, it should reset every time it moves to the next q.
 
 //The countdown timer
 
 function countdown() {
-    var timeLeft = 15;
-    
-    var timeInterval = setInterval(function () {
-        if (timeLeft > 1) {
-            // Set the `textContent` of `timerEl` to show the remaining seconds
-            timerEl.textContent = timeLeft + ' seconds remaining';
-            // Decrement `timeLeft` by 1
-            timeLeft--;
-        } else if (timeLeft === 1) {
-            timerEl.textContent = timeLeft + ' second remaining';
-            timeLeft--;
-        } else {
-            // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-            timerEl.textContent = '';
-            // Use `clearInterval()` to stop the timer
-            clearInterval(timeInterval);
-            // Call the `displayMessage()` function
-            scoreNumber = {
-                
-            }
-            timerEl.textContent = 'Time is up ⌛'
-            questionContainerElement.setAttribute('class', 'hide')
-            nextButton.classList.add('hide');
-            showName.classList.remove('hide');
-            
-        }
-    }, 500);
-}
+  var timeLeft = 15;
 
+  var timeInterval = setInterval(function () {
+    if (timeLeft > 1) {
+      // Set the `textContent` of `timerEl` to show the remaining seconds
+      timerEl.textContent = timeLeft + " seconds remaining";
+      // Decrement `timeLeft` by 1
+      timeLeft--;
+    } else if (timeLeft === 1) {
+      timerEl.textContent = timeLeft + " second remaining";
+      timeLeft--;
+    } else {
+      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+      timerEl.textContent = "";
+      // Use `clearInterval()` to stop the timer
+      clearInterval(timeInterval);
+      // Call the `displayMessage()` function
+      scoreNumber = {};
+      timerEl.textContent = "Time is up ⌛";
+      questionContainerElement.setAttribute("class", "hide");
+      nextButton.classList.add("hide");
+      showName.classList.remove("hide");
+    }
+  }, 500);
+}
 
 // quiz functions
 
 function startQuiz() {
-    countdown();
-    startButton.classList.add('hide')
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
-    questionContainerElement.classList.remove('hide')
-    setNextQuestion()
+  countdown();
+  startButton.classList.add("hide");
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  currentQuestionIndex = 0;
+  questionContainerElement.classList.remove("hide");
+  setNextQuestion();
 }
 
 function setNextQuestion() {
-    resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+  resetState();
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
 
 function showQuestion(question) {
-    questionElement.innerText = question.question
-    question.answers.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer.text
-        button.classList.add('button')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-            score += 1
-        }
-        button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button)
-    })
+  questionElement.innerText = question.question;
+  question.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.innerText = answer.text;
+    button.classList.add("button");
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+      score += 1;
+    }
+    button.addEventListener("click", selectAnswer);
+    answerButtonsElement.appendChild(button);
+  });
 }
 
 function resetState() {
-    clearStatusClass(document.body)
-    nextButton.classList.add('hide')
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-    }
+  clearStatusClass(document.body);
+  nextButton.classList.add("hide");
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
 }
 
 function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove('hide')
-    } else {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
-    }
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct;
+  setStatusClass(document.body, correct);
+  Array.from(answerButtonsElement.children).forEach((button) => {
+    setStatusClass(button, button.dataset.correct);
+  });
+  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    nextButton.classList.remove("hide");
+  } else {
+    startButton.innerText = "Restart";
+    startButton.classList.remove("hide");
+  }
 }
 
 function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('wrong')
-    }
+  clearStatusClass(element);
+  if (correct) {
+    element.classList.add("correct");
+  } else {
+    element.classList.add("wrong");
+  }
 }
 
 function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
+  element.classList.remove("correct");
+  element.classList.remove("wrong");
 }
 
-function reloadPage (event){
-    event.preventDefault();
-    window.location.reload();
-
+function reloadPage(event) {
+  event.preventDefault();
+  window.location.reload();
 }
-submitButton.addEventListener('click', leaderboard);
-restartButton.addEventListener('click', reloadPage);
+submitButton.addEventListener("click", leaderboard);
+restartButton.addEventListener("click", reloadPage);
+
+// Some of the answers to these questions aren't right, I would look back over these.
 
 //question bank
 
 const questions = [
-    {
-        question: 'Commonly used data types DO NOT include:',
-        answers: [
-      { text: 'strings', correct: false },
-      { text: 'booleans', correct: true },
-      { text: 'alerts', correct: false },
-      { text: 'numbers', correct: false }
-    ]
+  {
+    question: "Commonly used data types DO NOT include:",
+    answers: [
+      { text: "strings", correct: false },
+      { text: "booleans", correct: true },
+      { text: "alerts", correct: false },
+      { text: "numbers", correct: false },
+    ],
   },
   {
-    question: 'Arrays in Javascript can be use to store',
+    question: "Arrays in Javascript can be use to store",
     answers: [
-      { text: 'numbers and strings', correct: true },
-      { text: 'other arrays', correct: true },
-      { text: 'booleans', correct: true },
-      { text: 'All the above', correct: true }
-    ]
+      { text: "numbers and strings", correct: true },
+      { text: "other arrays", correct: true },
+      { text: "booleans", correct: true },
+      { text: "All the above", correct: true },
+    ],
   },
   {
-    question: 'A very useful tool used during development and debugging is',
+    question: "A very useful tool used during development and debugging is",
     answers: [
-      { text: 'Javascript', correct: false },
-      { text: 'terminal/bash', correct: false },
-      { text: 'for loops', correct: true },
-      { text: 'console.log', correct: false }
-    ]
+      { text: "Javascript", correct: false },
+      { text: "terminal/bash", correct: false },
+      { text: "for loops", correct: true },
+      { text: "console.log", correct: false },
+    ],
   },
   {
-    question: 'The condition in an if/and statement is enclosed with',
+    question: "The condition in an if/and statement is enclosed with",
     answers: [
-      { text: 'quotes', correct: false },
-      { text: 'curly brackets', correct: false },
-      { text: 'parentehsis', correct: true },
-      { text: 'square brackets', correct: false }
-    ]
-  }
-]
+      { text: "quotes", correct: false },
+      { text: "curly brackets", correct: false },
+      { text: "parentehsis", correct: true },
+      { text: "square brackets", correct: false },
+    ],
+  },
+];

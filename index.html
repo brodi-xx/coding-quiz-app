@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../coding-quiz-app/style.css">
-    <link rel="stylesheet" type="text/css" href="../coding-quiz-app/reset.css">
+    <!-- the href only needs to be ./ as it lives in the same directory as the other files -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./reset.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz</title>
@@ -12,7 +13,8 @@
     <header id="header">
         <h1>Developer Quiz</h1>
         <a href="#" id="leaderboardLink">Leaderboard</a>
-        <p id="countdown"></p>
+        <!-- This p tag is what's causing the issue with the header alignment. I moved it to the bottom of the page. But I would move it anywhere outside of the header. You will need to adjust spacing again. Maybe force it to bottom of page. or top, etc -->
+        <!-- <p id="countdown"></p> -->
     </header>
     <div class="container">
         <div class = "hide" id = "showName">
@@ -34,8 +36,10 @@
           <button id="start-btn" class="start-button button">Start</button>
           <button id="next-btn" class="next-button button hide">Next</button>
         </div>
-      </div>
+    </div>
 
-    <script src="../coding-quiz-app/script.js"></script>
+    <p id="countdown"></p>
+    <!-- This only needs ./ again bc it lives in the current directory, unless you did that for deployment folder reasons -->
+    <script src="./script.js"></script>
 </body>
 </html>
